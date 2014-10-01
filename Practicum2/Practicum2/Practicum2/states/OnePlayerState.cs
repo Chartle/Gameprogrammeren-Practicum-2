@@ -11,11 +11,11 @@ namespace Practicum2.states
     {
         GameObjectGrid pieceGrid;
         SpriteGameObject bgGrid;
-        MiniPiece testPiece;
+        Piece testPiece;
 
         public OnePlayerState()
         {
-            testPiece = new MiniPiece(Color.Red);
+            testPiece = new Piece(PieceType.Straight);
             pieceGrid = new GameObjectGrid(12, 20, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;

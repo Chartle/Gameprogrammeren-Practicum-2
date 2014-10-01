@@ -5,9 +5,9 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practicum2", "Practicum2\Practicum2\Practicum2.csproj", "{E61E807A-2E37-4FC8-91FA-788F3926C338}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Practicum2Content", "Practicum2\Practicum2Content\Practicum2Content.contentproj", "{17E1BBD8-2593-4192-8919-710AA3CCA670}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practicum2Content", "Practicum2\Practicum2Content\Practicum2Content.contentproj", "{17E1BBD8-2593-4192-8919-710AA3CCA670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagement", "..\..\..\Learning CSharp\GameManagement\GameManagement.csproj", "{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameManagement", "..\..\GameManagement\GameManagement.csproj", "{6CEB5F37-0BFA-4A0D-8DB7-B25ECD81CAAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
