@@ -12,11 +12,12 @@ namespace Practicum2.states
         GameObjectGrid pieceGrid;
         SpriteGameObject bgGrid;
         Piece testPiece;
+        TextGameObject debugText;
 
         public OnePlayerState()
         {
-            testPiece = new Piece(PieceType.Straight, Color.Blue);
-            testPiece.Position = new Vector2(460, 60);
+            testPiece = new Piece(PieceType.Straight);
+            testPiece.MaxMoveTime = 5000;
 
             pieceGrid = new GameObjectGrid(12, 20, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
@@ -33,7 +34,15 @@ namespace Practicum2.states
                     this.Add(bgGrid);
                 }
             }
-            this.Add(testPiece);
+            pieceGrid.Add(testPiece, 0, 0);
+
+            debugText = new TextGameObject("fonts/MainMenuFont");
+            this.Add(debugText);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            debugText.Text = "" + testPiece.MaxMoveTime;
         }
     }
 }

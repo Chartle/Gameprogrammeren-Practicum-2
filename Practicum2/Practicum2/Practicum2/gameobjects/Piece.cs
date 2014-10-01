@@ -15,12 +15,13 @@ namespace Practicum2.gameobjects
         bool[,] pieceArray = new bool[4,4];
         Vector2 center;
         Color color;
+        float maxMoveTime, moveTime;
+        GameObjectGrid parentGrid;
 
-        public Piece(PieceType pieceType, Color color, string assetname = "sprites/block")
+        public Piece(PieceType pieceType, string assetname = "sprites/block")
             : base(assetname)
         {
             this.pieceType = pieceType;
-            this.color = color;
 
             for (int i = 0; i < 4; i++ )
             {
@@ -42,8 +43,41 @@ namespace Practicum2.gameobjects
                     {
                         pieceArray[0, i] = true;
                     }
+                    color = Color.Blue;
+                    center = new Vector2(0, 1);
                     break;
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //moveTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (moveTime < 0)
+            {
+                moveTime = maxMoveTime;
+                if(canMoveDown())
+                {
+                    moveDown();
+                }
+            }
+        }
+
+        protected void moveDown()
+        {
+            int x = (int)(position.X / parentGrid.CellWidth);
+            int y = (int)(position.Y / parentGrid.CellHeight);
+            GameObject obj = this as GameObject;
+            parentGrid.Add(null, x, y);
+            parentGrid.Add(obj, x, y + 1);
+            hasUpdated = true;
+        }
+
+        private bool canMoveDown()
+        {
+            GameObjectList state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
+            parentGrid = state.Find("pieceGrid") as GameObjectGrid;
+            return position.Y / parentGrid.CellHeight < parentGrid.Rows - 1;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -54,12 +88,16 @@ namespace Practicum2.gameobjects
                 {
                     if(pieceArray[x,y])
                     {
-                        sprite.Draw(spriteBatch, position + new Vector2(30*x, 30*y), origin, color);
-                        Debug.Print("drawing sprite on " + x + ", " + y);
+                        sprite.Draw(spriteBatch, GlobalPosition + new Vector2(30*x, 30*y), origin, color);
                     }
                 }
             }
-            base.Draw(gameTime, spriteBatch);
+            
+        }
+
+        public float MaxMoveTime
+        {
+            set { maxMoveTime = value; }
         }
     }
 }
