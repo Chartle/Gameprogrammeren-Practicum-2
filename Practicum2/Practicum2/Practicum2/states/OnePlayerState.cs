@@ -15,7 +15,9 @@ namespace Practicum2.states
 
         public OnePlayerState()
         {
-            testPiece = new Piece(PieceType.Straight);
+            testPiece = new Piece(PieceType.Straight, Color.Blue);
+            testPiece.Position = new Vector2(460, 60);
+
             pieceGrid = new GameObjectGrid(12, 20, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;
@@ -31,7 +33,7 @@ namespace Practicum2.states
                     this.Add(bgGrid);
                 }
             }
-            pieceGrid.Add(testPiece, 0, 0);
+            this.Add(testPiece);
         }
     }
 }
