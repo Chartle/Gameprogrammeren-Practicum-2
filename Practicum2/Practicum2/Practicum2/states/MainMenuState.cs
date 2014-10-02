@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Practicum2.gameobjects;
+
 namespace Practicum2.states
 {
     class MainMenuState : GameObjectList

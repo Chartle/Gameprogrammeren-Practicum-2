@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Practicum2.gameobjects
 {
@@ -30,7 +31,6 @@ namespace Practicum2.gameobjects
                     pieceArray[i, j] = false;
                 }
             }
-
             setType(this.pieceType);
         }
 
@@ -39,7 +39,7 @@ namespace Practicum2.gameobjects
             switch(pieceType)
             {
                 case PieceType.Straight:
-                    for (int i = 0; i < 4; i++) 
+                    for (int i = 0; i < 3; i++) 
                     {
                         pieceArray[0, i] = true;
                     }
@@ -47,37 +47,129 @@ namespace Practicum2.gameobjects
                     center = new Vector2(0, 1);
                     break;
             }
+
         }
 
         public override void Update(GameTime gameTime)
         {
-            //moveTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            GameObjectList state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
+            parentGrid = state.Find("pieceGrid") as GameObjectGrid;
+            moveTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (moveTime < 0)
-            {
-                moveTime = maxMoveTime;
-                if(canMoveDown())
-                {
-                    moveDown();
-                }
-            }
+            hasUpdated = false;
+            base.Update(gameTime);
         }
 
-        protected void moveDown()
+        protected void Move(int newX, int newY, bool relative)
         {
             int x = (int)(position.X / parentGrid.CellWidth);
             int y = (int)(position.Y / parentGrid.CellHeight);
-            GameObject obj = this as GameObject;
+
+            if (relative)
+            {
+                parentGrid.Add(this, x + newX, y + newY);
+                Debug.Print("Moving relatively to: " + (x + newX) + ", " + (y + newY));
+            }
+            else
+            {
+                parentGrid.Add(this, newX, newY);
+                Debug.Print("Moving to: " + newX + ", " + y);
+            }
             parentGrid.Add(null, x, y);
-            parentGrid.Add(obj, x, y + 1);
-            hasUpdated = true;
         }
 
-        private bool canMoveDown()
+        private int ActualWidth
         {
-            GameObjectList state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
-            parentGrid = state.Find("pieceGrid") as GameObjectGrid;
-            return position.Y / parentGrid.CellHeight < parentGrid.Rows - 1;
+            get
+            {
+                for (int i = Columns - 1; i >= 0; i--) 
+                {
+                    for(int j = 0 ; j < Rows ; j++)
+                    {
+                        if(pieceArray[i,j])
+                        {
+                            return i-1;
+                        }
+                    }
+                }
+                return -1;
+            }
+        }
+
+        private int ActualHeight
+        {
+            get
+            {
+                for (int i = Rows - 1; i >= 0; i--)
+                {
+                    for (int j = 0; j < Columns; j++)
+                    {
+                        if (pieceArray[j, i])
+                        {
+                            return i+1;
+                        }
+                    }
+                }
+                return -1;
+            }
+        }
+
+        private bool CanMove(string direction)
+        {
+            switch (direction)
+            {
+                case "down":
+                    return position.Y / parentGrid.CellHeight < parentGrid.Rows - ActualHeight;
+
+                case "left":
+                    return position.X / parentGrid.CellWidth > 0;
+
+                case "right":
+                    return position.X / parentGrid.CellWidth < parentGrid.Columns + ActualWidth;
+
+                default:
+                    return false;
+            }
+        }
+
+        public override void HandleInput(InputHelper inputHelper)
+        {
+            //if (!hasUpdated)
+            {
+                int moveX = 0, moveY = 0;
+                if (inputHelper.KeyPressed(Keys.Left) && !hasUpdated)
+                {
+                    if (CanMove("left"))
+                    {
+                        moveX--;
+                    }
+                }
+                if (inputHelper.KeyPressed(Keys.Right) && !hasUpdated)
+                {
+                    if (CanMove("right"))
+                    {
+                        moveX++;
+                    }
+                }
+
+                if (moveTime < 0)
+                {
+                    moveTime = maxMoveTime;
+                    if (CanMove("down"))
+                    {
+                        moveY++;
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+                if (moveX != 0 || moveY != 0)
+                    Move(moveX, moveY, true);
+
+            }
+            hasUpdated = true;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -97,7 +189,26 @@ namespace Practicum2.gameobjects
 
         public float MaxMoveTime
         {
-            set { maxMoveTime = value; }
+            set
+            { 
+                maxMoveTime = value;
+                moveTime = maxMoveTime;
+            }
+        }
+
+        public float MoveTime
+        {
+            get { return moveTime; }
+        }
+
+        private int Rows
+        {
+            get { return pieceArray.GetLength(1); }
+        }
+
+        private int Columns
+        {
+            get { return pieceArray.GetLength(0); }
         }
     }
 }

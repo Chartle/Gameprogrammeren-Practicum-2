@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,7 +23,7 @@ public class GameObjectGrid : GameObject
     {
         if (obj != null)
         {
-            Debug.Print(x + " : " + y);
+            //Debug.Print(x + " : " + y);
             grid[x, y] = obj;
             obj.Parent = this;
             obj.Position = new Vector2(x * cellWidth, y * cellHeight);
@@ -92,7 +95,7 @@ public class GameObjectGrid : GameObject
     {
         foreach (GameObject obj in grid)
         {
-            if(obj != null)
+            if (obj != null)
                 obj.Update(gameTime);
         }
     }

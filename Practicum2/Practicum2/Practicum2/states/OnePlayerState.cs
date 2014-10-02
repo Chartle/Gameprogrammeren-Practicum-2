@@ -17,8 +17,9 @@ namespace Practicum2.states
         public OnePlayerState()
         {
             testPiece = new Piece(PieceType.Straight);
-            testPiece.MaxMoveTime = 5000;
+            testPiece.MaxMoveTime = 0.5f;
 
+            
             pieceGrid = new GameObjectGrid(12, 20, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;
@@ -35,14 +36,14 @@ namespace Practicum2.states
                 }
             }
             pieceGrid.Add(testPiece, 0, 0);
-
             debugText = new TextGameObject("fonts/MainMenuFont");
             this.Add(debugText);
         }
 
         public override void Update(GameTime gameTime)
         {
-            debugText.Text = "" + testPiece.MaxMoveTime;
+            debugText.Text = "" + testPiece.MoveTime;
+            base.Update(gameTime);
         }
     }
 }
