@@ -4,23 +4,25 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Practicum2.gameobjects;
-
+using Practicum2.gameobjects.pieces;
 namespace Practicum2.states
 {
     class OnePlayerState : GameObjectList
     {
-        GameObjectGrid pieceGrid;
+        TetrisGrid pieceGrid;
         SpriteGameObject bgGrid;
-        Piece testPiece;
+        StraightPiece piece1, piece2;
         TextGameObject debugText;
 
         public OnePlayerState()
         {
-            testPiece = new Piece(PieceType.Straight);
-            testPiece.MaxMoveTime = 0.5f;
+            piece1 = new StraightPiece(false, 1, 4, "piece1");
+            piece1.MaxMoveTime = 1f;
 
+            piece2 = new StraightPiece(true, 1, 4, "piece2");
+            piece2.MaxMoveTime = 1f;
             
-            pieceGrid = new GameObjectGrid(12, 20, 0, "pieceGrid");
+            pieceGrid = new TetrisGrid(12, 20, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;
             pieceGrid.Position = new Vector2(60, 60);
@@ -35,14 +37,16 @@ namespace Practicum2.states
                     this.Add(bgGrid);
                 }
             }
-            pieceGrid.Add(testPiece, 0, 0);
+
+            pieceGrid.Add(piece1, 0, 0);
+            this.Add(piece2);
             debugText = new TextGameObject("fonts/MainMenuFont");
             this.Add(debugText);
         }
 
         public override void Update(GameTime gameTime)
         {
-            debugText.Text = "" + testPiece.MoveTime;
+            debugText.Text = "" + piece1.MoveTime;
             base.Update(gameTime);
         }
     }
