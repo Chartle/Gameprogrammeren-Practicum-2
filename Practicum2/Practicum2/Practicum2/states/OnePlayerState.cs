@@ -19,7 +19,7 @@ namespace Practicum2.states
             piece1 = new StraightPiece(false, 1, 4, "piece1");
             piece1.MaxMoveTime = 1f;
 
-            piece2 = new StraightPiece(true, 1, 4, "piece2");
+            piece2 = new TPiece(true, 3, 2, "piece2");
             piece2.MaxMoveTime = 1f;
             
             pieceGrid = new TetrisGrid(12, 20, 0, "pieceGrid");
