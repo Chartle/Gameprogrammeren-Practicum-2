@@ -26,75 +26,9 @@ namespace Practicum2.gameobjects
         {
             this.isNextPiece = isNextPiece;
             pieceArray = new bool[size, size];
-            if(isNextPiece)
+            if (isNextPiece)
             {
                 position = new Vector2(Tetris.Screen.X - 120, 120);
-            }
-        }
-
-        protected void setType(PieceType pieceType)
-        {
-            switch (pieceType)
-            {
-                case PieceType.Straight:
-                    for (int y = 0; y < 4; y++)
-                            pieceArray[1, y] = true;
-                    color = Color.Blue;
-                    break;
-
-                case PieceType.Block:
-                    for (int x = 0; x < 2; x++)
-                    {
-                        for (int y = 0; y < 2; y++)
-                        {
-                            pieceArray[x, y] = true;
-                        }
-                    }
-                    color = Color.Pink;
-                    break;
-
-                case PieceType.L:
-                    for (int y = 0; y < 3; y++)
-                    {
-                        pieceArray[1, y] = true;
-                    }
-                    pieceArray[2, 2] = true;
-                    color = Color.Purple;
-                    break;
-
-                case PieceType.LMirror:
-                    for (int y = 0; y < 3; y++)
-                    {
-                        pieceArray[1, y] = true;
-                    }
-                    pieceArray[0, 2] = true;
-                    color = Color.Red;
-                    break;
-
-                case PieceType.T:
-                    for (int x = 0; x < 3; x++)
-                        pieceArray[x, 1] = true;
-                    pieceArray[1, 2] = true;
-                    color = Color.SaddleBrown;
-                    break;
-
-                case PieceType.Z:
-                    for (int x = 0; x < 2; x++)
-                    {
-                        pieceArray[x, 0] = true;
-                        pieceArray[x + 1, 1] = true;
-                    }
-                    color = Color.SeaGreen;
-                    break;
-
-                case PieceType.ZMirror:
-                    for (int x = 1; x < 3; x++)
-                    {
-                        pieceArray[x, 0] = true;
-                        pieceArray[x - 1, 1] = true;
-                    }
-                    color = Color.Silver;
-                    break;
             }
         }
 
@@ -124,6 +58,7 @@ namespace Practicum2.gameobjects
                             tempArray[y, Columns - 1 - x] = pieceArray[x, y];
                         }
                     }
+                    Debug.Print("Rotated left");
                     break;
 
                 case "right":
@@ -133,10 +68,34 @@ namespace Practicum2.gameobjects
                         {
                             tempArray[Rows - 1 - y, x] = pieceArray[x, y];
                         }
-                    }   
+                    }
+                    Debug.Print("Rotated right");
                     break;
             }
             pieceArray = tempArray;
+            /*for (int x = 0; x < Columns; x++)
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    if(pieceArray[x,y])
+                    {
+                        if(currX + x < 2)
+                        {
+                            if(CanMove("right"))
+                            {
+                                Move(1, 0, true);
+                            }
+                        }
+                        if(currX +  x > parentGrid.Columns - 2)
+                        {
+                            if(CanMove("left"))
+                            {
+                                Move(-1, 0, true);
+                            }
+                        }
+                    }
+                }
+            }*/
         }
 
         public void Move(int newX, int newY, bool relative)
@@ -246,7 +205,6 @@ namespace Practicum2.gameobjects
 
             if (!isNextPiece)
             {
-
                 if (inputHelper.KeyPressed(Keys.Q))
                 {
                     Rotate("left");
@@ -287,8 +245,32 @@ namespace Practicum2.gameobjects
                     }
                 }
 
+                for (int x = 0; x < Columns; x++)
+                {
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            if (x + currX < 2)
+                                moveX++;
+                        }
+                    }
+                }
+                for (int x = Columns - 1; x >= 0; x--)
+                {
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            parentGrid.AddBool(true, currX + x, currY + y);
+                            parentGrid.AddColor(color, currX + x, currY + y);
+                        }
+                    }
+                }
+
                 if (moveX != 0 || moveY != 0)
                     Move(moveX, moveY, true);
+                
                 hasUpdated = true;
             }
         }

@@ -19,7 +19,7 @@ namespace Practicum2.states
             piece1 = new LPiece(false, "piece1");
             piece1.MaxMoveTime = 1f;
 
-            piece2 = new BlockPiece(true, "piece2");
+            piece2 = new StraightPiece(true, "piece2");
             piece2.MaxMoveTime = 1f;
             
             pieceGrid = new TetrisGrid(16, 22, 0, "pieceGrid");
@@ -68,7 +68,7 @@ namespace Practicum2.states
                         break;
 
                     case PieceType.L:
-                        piece1 = new LMirrorPiece(false, "piece1");
+                        piece1 = new LPiece(false, "piece1");
                         break;
 
                     case PieceType.LMirror:
@@ -76,11 +76,11 @@ namespace Practicum2.states
                         break;
 
                     case PieceType.Z:
-                        piece1 = new LMirrorPiece(false, "piece1");
+                        piece1 = new ZPiece(false, "piece1");
                         break;
 
                     case PieceType.ZMirror:
-                        piece1 = new LMirrorPiece(false, "piece1");
+                        piece1 = new ZMirrorPiece(false, "piece1");
                         break;
 
                     default:

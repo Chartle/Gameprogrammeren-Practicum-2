@@ -76,8 +76,10 @@
     <Compile Include="gameobjects\Piece.cs" />
     <Compile Include="gameobjects\Enums.cs" />
     <Compile Include="gameobjects\pieces\BlockPiece.cs" />
+    <Compile Include="gameobjects\pieces\ZMirrorPiece.cs" />
     <Compile Include="gameobjects\pieces\LMirrorPiece.cs" />
     <Compile Include="gameobjects\pieces\LPiece.cs" />
+    <Compile Include="gameobjects\pieces\ZPiece.cs" />
     <Compile Include="gameobjects\pieces\TPiece.cs" />
     <Compile Include="gameobjects\pieces\StraightPiece.cs" />
     <Compile Include="gameobjects\TetrisGrid.cs" />

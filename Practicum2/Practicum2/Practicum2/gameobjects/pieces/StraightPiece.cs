@@ -16,6 +16,7 @@ namespace Practicum2.gameobjects.pieces
         {
             for (int y = 0; y < 4; y++)
                 pieceArray[1, y] = true;
+
             color = Color.Cyan;
             pieceType = PieceType.Straight;
         }
