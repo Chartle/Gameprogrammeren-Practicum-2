@@ -11,7 +11,7 @@ namespace Practicum2.states
     {
         TetrisGrid pieceGrid;
         SpriteGameObject bgGrid;
-        StraightPiece piece1, piece2;
+        Piece piece1, piece2;
         TextGameObject debugText;
 
         public OnePlayerState()
@@ -47,7 +47,29 @@ namespace Practicum2.states
         public override void Update(GameTime gameTime)
         {
             debugText.Text = "" + piece1.MoveTime;
+            
             base.Update(gameTime);
+
+            if(pieceGrid.ObjCounter == 0)
+            {
+                PieceType newPieceType = piece2.PieceType;
+                switch(newPieceType)
+                {
+                    case PieceType.Straight:
+                        piece1 = new StraightPiece(false, 1, 4, "piece1");
+                        break;
+                        
+                    case PieceType.T:
+                        piece1 = new TPiece(false, 3, 2, "piece1");
+                        break;
+
+                    default:
+                        piece1 = new StraightPiece(false, 1, 4, "piece1");
+                        break;
+                }
+                
+                pieceGrid.Add(piece1, 6, 0);
+            }
         }
     }
 }

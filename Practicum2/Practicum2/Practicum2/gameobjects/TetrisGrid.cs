@@ -12,6 +12,7 @@ namespace Practicum2.gameobjects
     {
         protected bool[,] boolGrid;
         protected Color[,] colorGrid;
+        protected int objCounter;
         SpriteGameObject block;
         public TetrisGrid(int columns, int rows, int layer = 0, string id = ""): base(columns, rows, layer, id)
         {
@@ -23,6 +24,15 @@ namespace Practicum2.gameobjects
                     boolGrid[x, y] = false;
                     colorGrid[x, y] = Color.White;
                 }
+
+            objCounter = 0;
+        }
+
+        public void AddAll(GameObject obj, bool booltemp, Color color, int x, int y)
+        {
+            grid[x, y] = obj;
+            boolGrid[x, y] = booltemp;
+            colorGrid[x, y] = color;
         }
 
         public void AddBool(bool obj, int x, int y)
@@ -59,6 +69,17 @@ namespace Practicum2.gameobjects
                 return Color.White;
         }
 
+        protected void RemoveRow(int y)
+        {
+            // check and/or remove row
+        }
+
+        public void Move(int x, int y, int newX, int newY)
+        {
+            grid[newX, newY] = grid[x, y];
+            grid[x, y] = null;
+        }
+
         public Color[,] ObjectsColor
         {
             get
@@ -66,6 +87,15 @@ namespace Practicum2.gameobjects
                 return colorGrid;
             }
         }
+
+        public int ObjCounter
+        {
+            get
+            {
+                return objCounter;
+            }
+        }
+
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -80,13 +110,18 @@ namespace Practicum2.gameobjects
                     }
                 }
             }
+            base.Draw(gameTime, spriteBatch);
+        }
 
-                /*foreach (GameObject obj in grid)
+        public override void Update(GameTime gameTime)
+        {
+            objCounter = 0;
+            foreach (GameObject obj in grid)
             {
-                if(obj != null)
-                    obj.Draw(gameTime, spriteBatch);
-            } TODO */
-                base.Draw(gameTime, spriteBatch);
+                if(obj!= null)
+                    objCounter++;
+            }
+            base.Update(gameTime);
         }
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="gameobjects\MiniPiece.cs" />
     <Compile Include="gameobjects\Piece.cs" />
     <Compile Include="gameobjects\Enums.cs" />
+    <Compile Include="gameobjects\pieces\TPiece.cs" />
     <Compile Include="gameobjects\pieces\StraightPiece.cs" />
     <Compile Include="gameobjects\TetrisGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

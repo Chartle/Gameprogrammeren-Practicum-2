@@ -20,6 +20,7 @@ namespace Practicum2.gameobjects
         protected float maxMoveTime, moveTime;
         protected TetrisGrid parentGrid;
         protected GameObjectList state;
+        protected int currX, currY;
 
         public Piece(int columns, int rows, bool isNextPiece, string id = "", string assetname = "sprites/block")
             : base(assetname, 0, id)
@@ -30,15 +31,6 @@ namespace Practicum2.gameobjects
             {
                 position = new Vector2(Tetris.Screen.X - 120, 120);
             }
-
-            /*for (int i = 0; i < Columns; i++ )
-            {
-                for(int j = 0; j < Rows; j++)
-                {
-                    pieceArray[i, j] = false;
-                }
-            }*/
-            //setType(this.pieceType);
         }
 
         protected void setType(PieceType pieceType)
@@ -117,17 +109,41 @@ namespace Practicum2.gameobjects
 
         public override void Update(GameTime gameTime)
         {
-            state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
-            parentGrid = state.Find("pieceGrid") as TetrisGrid;
             moveTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             hasUpdated = false;
             base.Update(gameTime);
         }
 
-        public void changePiece()
+        public void Turn(string dir)
         {
-            
+            //todo turn around point
+            bool[,] tempArray = new bool[Rows, Columns];
+            for (int i = 0; i < tempArray.GetLength(0)-1; i++)
+            {
+                for(int j = 0; j < tempArray.GetLength(1)-1; i++)
+                {
+                    tempArray[i, j] = false;
+                }
+            }
+            switch (dir)
+            {
+                case "left":
+                    for (int x = 0; x < Columns; x++)
+                    {
+                        for (int y = 0; y < Rows; y++)
+                        {
+                            tempArray[y, x] = pieceArray[x, y];
+                        }
+                    }
+                        // TODO turn around center
+                    break;
+
+                        case "right":
+                            //turn right
+                            break;
+            }
+            pieceArray = tempArray;
         }
 
         public void Move(int newX, int newY, bool relative)
@@ -153,16 +169,51 @@ namespace Practicum2.gameobjects
             switch (direction)
             {
                 case "down":
+                    for (int x = 0; x < Columns; x++ )
                     {
-
+                        for(int y = Rows-1; y >= 0; y--)
+                        {
+                            if(pieceArray[x,y])
+                            {
+                                if(parentGrid.GetBool(currX+x,currY+y+1))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
                     }
                     return position.Y / parentGrid.CellHeight < parentGrid.Rows - Rows;
 
                 case "left":
-                    
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        for (int x = 0; x < Columns; x++)
+                        {
+                            if (pieceArray[x, y])
+                            {
+                                if (parentGrid.GetBool(currX + x -1, currY + y))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
                     return position.X / parentGrid.CellWidth > 0;
 
                 case "right":
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        for (int x = Columns - 1; x >= 0; x--)
+                        {
+                            if (pieceArray[x, y])
+                            {
+                                if (parentGrid.GetBool(currX + x + 1, currY + y))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
                     return position.X / parentGrid.CellWidth < parentGrid.Columns - Columns;
 
                 default:
@@ -172,23 +223,31 @@ namespace Practicum2.gameobjects
 
         public override void HandleInput(InputHelper inputHelper)
         {
+            state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
+            parentGrid = state.Find("pieceGrid") as TetrisGrid;
+            
             if(inputHelper.IsKeyDown(Keys.Down))
             {
-                maxMoveTime = 0.1f;
-                if(moveTime > 0.1f)
-                    moveTime = 0.1f;
+                maxMoveTime = 0.05f;
+                if(moveTime > 0.05f)
+                    moveTime = 0.05f;
             }
             else
             {
                 maxMoveTime = 1f;
             }
 
-
-            int currX = (int)(position.X / parentGrid.CellWidth);
-            int currY = (int)(position.Y / parentGrid.CellHeight);
+            currX = (int)(position.X / parentGrid.CellWidth);
+            currY = (int)(position.Y / parentGrid.CellHeight);
 
             if (!isNextPiece)
             {
+
+                if (inputHelper.KeyPressed(Keys.Up))
+                {
+                //    Turn("left");
+                }
+
                 int moveX = 0, moveY = 0;
                 if (inputHelper.KeyPressed(Keys.Left) && !hasUpdated)
                 {
@@ -214,19 +273,7 @@ namespace Practicum2.gameobjects
                     }
                     else
                     {
-                        for (int x = 0; x < Columns; x++) 
-                        {
-                            for(int y = 0; y < Rows; y++)
-                            {
-                                if(pieceArray[x,y])
-                                {
-                                    parentGrid.AddBool(true, currX + x, currY + y);
-                                    parentGrid.AddColor(color, currX + x, currY + y);
-                                }
-                            }
-                        }
-                        parentGrid.Add(null, currX, currY);
-                        changePiece();
+                        Stop();
                     }
                 }
 
@@ -234,6 +281,22 @@ namespace Practicum2.gameobjects
                     Move(moveX, moveY, true);
                 hasUpdated = true;
             }
+        }
+
+        public void Stop()
+        {
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    if (pieceArray[x, y])
+                    {
+                        parentGrid.AddBool(true, currX + x, currY + y);
+                        parentGrid.AddColor(color, currX + x, currY + y);
+                    }
+                }
+            }
+            parentGrid.Add(null, currX, currY);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -252,9 +315,15 @@ namespace Practicum2.gameobjects
 
         public override void Reset()
         {
-            Array tempArray = Enum.GetValues(typeof(PieceType));
-            pieceType = (PieceType)tempArray.GetValue(Tetris.Random.Next(tempArray.Length));
+            //Array tempArray = Enum.GetValues(typeof(PieceType));
+            //pieceType = (PieceType)tempArray.GetValue(Tetris.Random.Next(tempArray.Length));
             base.Reset();
+        }
+
+        public PieceType PieceType
+        {
+            get { return pieceType; }
+            set { pieceType = value; }
         }
 
         public float MaxMoveTime
@@ -280,82 +349,6 @@ namespace Practicum2.gameobjects
         {
             get { return pieceArray.GetLength(0); }
         }
-
-        /*private int LeftestBlock
-        {
-            get
-            {
-                for (int i = 0; i < Columns; i++)
-                {
-                    for (int j = 0; j < Rows; j++)
-                    {
-                        if (pieceArray[i, j])
-                        {
-                            Debug.Print("Leftest block is " + i);
-                            return i;
-                        }
-                    }
-                }
-                return -1;
-            }
-        }
-
-        private int RightestBlock
-        {
-            get
-            {
-                for (int i = Columns - 1; i >= 0; i--)
-                {
-                    for (int j = 0; j < Rows; j++)
-                    {
-                        if (pieceArray[i, j])
-                        {
-                            Debug.Print("Rightest block is " + i);
-                            return i;
-                        }
-                    }
-                }
-                return -1;
-            }
-        }
-
-        private int HighestBlock
-        {
-            get
-            {
-                for (int i = 0; i < Rows; i++)
-                {
-                    for (int j = 0; j < Columns; j++)
-                    {
-                        if (pieceArray[j, i])
-                        {
-                            Debug.Print("Highest block is " + i);
-                            return i;
-                        }
-                    }
-                }
-                return -1;
-            }
-        }
-
-        private int LowestBlock
-        {
-            get
-            {
-                for (int i = Rows - 1; i >= 0; i--)
-                {
-                    for (int j = 0; j < Columns; j++)
-                    {
-                        if (pieceArray[j, i])
-                        {
-                            Debug.Print("Lowest block is " + i);
-                            return i;
-                        }
-                    }
-                }
-                return -1;
-            }
-        }*/
 
         public bool IsNextPiece
         {
