@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Animation" Collapsed="true">
+    <Position X="11.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AnimatedGameObject" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObject" Collapsed="true">
+    <Position X="15" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameObjectGrid" Collapsed="true">
+    <Position X="18.5" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjectList" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SpriteGameObject" Collapsed="true">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TextGameObject" Collapsed="true">
+    <Position X="16.25" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AssetManager" Collapsed="true">
+    <Position X="21" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Collision" Collapsed="true">
+    <Position X="22.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DrawingHelper" Collapsed="true">
+    <Position X="24.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameEnvironment" Collapsed="true">
+    <Position X="21" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameSettingsManager" Collapsed="true">
+    <Position X="22.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameStateManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="InputHelper" Collapsed="true">
+    <Position X="21" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SpriteSheet" Collapsed="true">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Practicum2.Tetris" Collapsed="true">
+    <Position X="34" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>Tetris.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.states.MainMenuState" Collapsed="true">
+    <Position X="25.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>states\MainMenuState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.states.OnePlayerState" Collapsed="true">
+    <Position X="27.5" Y="2.5" Width="1.5" />
+    <InheritanceLine Type="GameObjectList" ManuallyRouted="true">
+      <Path>
+        <Point X="12.5" Y="2" />
+        <Point X="12.5" Y="1.614" />
+        <Point X="20.75" Y="1.614" />
+        <Point X="20.75" Y="3.566" />
+        <Point X="23.417" Y="3.566" Type="JumpStart" />
+        <Point X="23.583" Y="3.566" Type="JumpEnd" />
+        <Point X="28.25" Y="3.566" />
+        <Point X="28.25" Y="3.191" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAEAA=</HashCode>
+      <FileName>states\OnePlayerState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.gameobjects.MiniPiece" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAIAAAAgAABAAAAAAAAAAAAACAAAAAAEAAAAA=</HashCode>
+      <FileName>gameobjects\MiniPiece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.gameobjects.Piece" Collapsed="true">
+    <Position X="29.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAECCAIIAABkAQAAACEAAAABCAABKEoAASAAgAAIA=</HashCode>
+      <FileName>gameobjects\Piece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.gameobjects.TetrisGrid" Collapsed="true">
+    <Position X="31.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASQAAAAAIwAggABAAABAAAAAAAAAACAggABAAIABAA=</HashCode>
+      <FileName>gameobjects\TetrisGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.gameobjects.pieces.StraightPiece" Collapsed="true">
+    <Position X="28" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>gameobjects\pieces\StraightPiece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Practicum2.gameobjects.pieces.TPiece" Collapsed="true">
+    <Position X="30.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>gameobjects\pieces\TPiece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IGameLoopObject" Collapsed="true">
+    <Position X="21" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="Practicum2.gameobjects.PieceType" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQEAAE=</HashCode>
+      <FileName>gameobjects\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

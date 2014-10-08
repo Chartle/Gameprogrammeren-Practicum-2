@@ -105,8 +105,11 @@ namespace Practicum2.gameobjects
                 {
                     if (boolGrid[x,y])
                     {
-                        block = new SpriteGameObject("sprites/block", 0);
-                        block.Sprite.Draw(spriteBatch, position + new Vector2(x * 30, y * 30), Vector2.Zero, colorGrid[x, y]);
+                        if (y > 1)
+                        {
+                            block = new SpriteGameObject("sprites/block", 0);
+                            block.Sprite.Draw(spriteBatch, position + new Vector2(x * 30, y * 30), Vector2.Zero, colorGrid[x, y]);
+                        }
                     }
                 }
             }

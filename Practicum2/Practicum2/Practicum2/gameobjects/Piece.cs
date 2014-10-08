@@ -15,18 +15,17 @@ namespace Practicum2.gameobjects
         protected PieceType pieceType;
         protected bool isNextPiece;
         protected bool[,] pieceArray;
-        protected Vector2 center;
         protected Color color;
         protected float maxMoveTime, moveTime;
         protected TetrisGrid parentGrid;
         protected GameObjectList state;
         protected int currX, currY;
 
-        public Piece(int columns, int rows, bool isNextPiece, string id = "", string assetname = "sprites/block")
+        public Piece(bool isNextPiece, string id = "", int size = 0, string assetname = "sprites/block")
             : base(assetname, 0, id)
         {
             this.isNextPiece = isNextPiece;
-            pieceArray = new bool[columns, rows];
+            pieceArray = new bool[size, size];
             if(isNextPiece)
             {
                 position = new Vector2(Tetris.Screen.X - 120, 120);
@@ -40,7 +39,6 @@ namespace Practicum2.gameobjects
                 case PieceType.Straight:
                     for (int y = 0; y < 4; y++)
                             pieceArray[1, y] = true;
-                    center = new Vector2(1, 1);
                     color = Color.Blue;
                     break;
 
@@ -52,7 +50,6 @@ namespace Practicum2.gameobjects
                             pieceArray[x, y] = true;
                         }
                     }
-                    center = new Vector2(0, 0);
                     color = Color.Pink;
                     break;
 
@@ -61,7 +58,6 @@ namespace Practicum2.gameobjects
                     {
                         pieceArray[1, y] = true;
                     }
-                    center = new Vector2(1, 2);
                     pieceArray[2, 2] = true;
                     color = Color.Purple;
                     break;
@@ -71,7 +67,6 @@ namespace Practicum2.gameobjects
                     {
                         pieceArray[1, y] = true;
                     }
-                    center = new Vector2(1, 1);
                     pieceArray[0, 2] = true;
                     color = Color.Red;
                     break;
@@ -80,7 +75,6 @@ namespace Practicum2.gameobjects
                     for (int x = 0; x < 3; x++)
                         pieceArray[x, 1] = true;
                     pieceArray[1, 2] = true;
-                    center = new Vector2(0, 2);
                     color = Color.SaddleBrown;
                     break;
 
@@ -90,7 +84,6 @@ namespace Practicum2.gameobjects
                         pieceArray[x, 0] = true;
                         pieceArray[x + 1, 1] = true;
                     }
-                    center = new Vector2(0, 2);
                     color = Color.SeaGreen;
                     break;
 
@@ -100,9 +93,7 @@ namespace Practicum2.gameobjects
                         pieceArray[x, 0] = true;
                         pieceArray[x - 1, 1] = true;
                     }
-                    center = new Vector2(1, 2);
                     color = Color.Silver;
-                    center = new Vector2(0, 1);
                     break;
             }
         }
@@ -115,16 +106,13 @@ namespace Practicum2.gameobjects
             base.Update(gameTime);
         }
 
-        public void Turn(string dir)
+        public void Rotate(string dir)
         {
             //todo turn around point
-            bool[,] tempArray = new bool[Rows, Columns];
-            for (int i = 0; i < tempArray.GetLength(0)-1; i++)
+            bool[,] tempArray = new bool[Columns, Rows];
+            if(pieceType == PieceType.Block)
             {
-                for(int j = 0; j < tempArray.GetLength(1)-1; i++)
-                {
-                    tempArray[i, j] = false;
-                }
+                return;
             }
             switch (dir)
             {
@@ -133,15 +121,20 @@ namespace Practicum2.gameobjects
                     {
                         for (int y = 0; y < Rows; y++)
                         {
-                            tempArray[y, x] = pieceArray[x, y];
+                            tempArray[y, Columns - 1 - x] = pieceArray[x, y];
                         }
                     }
-                        // TODO turn around center
                     break;
 
-                        case "right":
-                            //turn right
-                            break;
+                case "right":
+                    for (int x = 0; x < Columns; x++)
+                    {
+                        for (int y = 0; y < Rows; y++)
+                        {
+                            tempArray[Rows - 1 - y, x] = pieceArray[x, y];
+                        }
+                    }   
+                    break;
             }
             pieceArray = tempArray;
         }
@@ -175,14 +168,18 @@ namespace Practicum2.gameobjects
                         {
                             if(pieceArray[x,y])
                             {
-                                if(parentGrid.GetBool(currX+x,currY+y+1))
+                                if (parentGrid.GetBool(currX + x, currY + y + 1)) 
+                                {
+                                    return false;
+                                }
+                                if (currY + y + 1 >= parentGrid.Rows) 
                                 {
                                     return false;
                                 }
                             }
                         }
                     }
-                    return position.Y / parentGrid.CellHeight < parentGrid.Rows - Rows;
+                    return true;
 
                 case "left":
                     for (int y = 0; y < Rows; y++)
@@ -195,10 +192,14 @@ namespace Practicum2.gameobjects
                                 {
                                     return false;
                                 }
+                                if(currX + x - 1 < 2)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
-                    return position.X / parentGrid.CellWidth > 0;
+                    return true;
 
                 case "right":
                     for (int y = 0; y < Rows; y++)
@@ -211,11 +212,14 @@ namespace Practicum2.gameobjects
                                 {
                                     return false;
                                 }
+                                if (currX + x + 1 >= parentGrid.Columns - 2) 
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
-                    return position.X / parentGrid.CellWidth < parentGrid.Columns - Columns;
-
+                    return true;
                 default:
                     return false;
             }
@@ -226,7 +230,7 @@ namespace Practicum2.gameobjects
             state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
             parentGrid = state.Find("pieceGrid") as TetrisGrid;
             
-            if(inputHelper.IsKeyDown(Keys.Down))
+            if(inputHelper.IsKeyDown(Keys.S))
             {
                 maxMoveTime = 0.05f;
                 if(moveTime > 0.05f)
@@ -243,20 +247,25 @@ namespace Practicum2.gameobjects
             if (!isNextPiece)
             {
 
-                if (inputHelper.KeyPressed(Keys.Up))
+                if (inputHelper.KeyPressed(Keys.Q))
                 {
-                //    Turn("left");
+                    Rotate("left");
+                }
+
+                if(inputHelper.KeyPressed(Keys.E))
+                {
+                    Rotate("right");
                 }
 
                 int moveX = 0, moveY = 0;
-                if (inputHelper.KeyPressed(Keys.Left) && !hasUpdated)
+                if (inputHelper.KeyPressed(Keys.A) && !hasUpdated)
                 {
                     if (CanMove("left"))
                     {
                         moveX--;
                     }
                 }
-                if (inputHelper.KeyPressed(Keys.Right) && !hasUpdated)
+                if (inputHelper.KeyPressed(Keys.D) && !hasUpdated)
                 {
                     if (CanMove("right"))
                     {
@@ -274,6 +283,7 @@ namespace Practicum2.gameobjects
                     else
                     {
                         Stop();
+                        return;
                     }
                 }
 
@@ -285,6 +295,7 @@ namespace Practicum2.gameobjects
 
         public void Stop()
         {
+            parentGrid.Add(null, currX, currY);
             for (int x = 0; x < Columns; x++)
             {
                 for (int y = 0; y < Rows; y++)
@@ -296,7 +307,6 @@ namespace Practicum2.gameobjects
                     }
                 }
             }
-            parentGrid.Add(null, currX, currY);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -307,7 +317,10 @@ namespace Practicum2.gameobjects
                 {
                     if(pieceArray[x,y])
                     {
-                        sprite.Draw(spriteBatch, GlobalPosition + new Vector2(30*x, 30*y), center, color);
+                        if (currY + y > 1)
+                        {
+                            sprite.Draw(spriteBatch, GlobalPosition + new Vector2(30 * x, 30 * y), Vector2.Zero, color);
+                        }
                     }
                 }
             }   

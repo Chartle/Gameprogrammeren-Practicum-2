@@ -51,41 +51,6 @@
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\Straight.txt">
-      <Name>Straight</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\L.txt">
-      <Name>L</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\LMirror.txt">
-      <Name>LMirror</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\Z.txt">
-      <Name>Z</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\Zmirror.txt">
-      <Name>Zmirror</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\T.txt">
-      <Name>T</Name>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="pieces\Block.txt">
-      <Name>Block</Name>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

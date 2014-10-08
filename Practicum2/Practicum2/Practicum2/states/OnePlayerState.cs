@@ -16,21 +16,21 @@ namespace Practicum2.states
 
         public OnePlayerState()
         {
-            piece1 = new StraightPiece(false, 1, 4, "piece1");
+            piece1 = new LPiece(false, "piece1");
             piece1.MaxMoveTime = 1f;
 
-            piece2 = new TPiece(true, 3, 2, "piece2");
+            piece2 = new BlockPiece(true, "piece2");
             piece2.MaxMoveTime = 1f;
             
-            pieceGrid = new TetrisGrid(12, 20, 0, "pieceGrid");
+            pieceGrid = new TetrisGrid(16, 22, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;
-            pieceGrid.Position = new Vector2(60, 60);
-            this.Add(pieceGrid); 
-            
-            for (int i = 0; i < pieceGrid.Columns; i++)
+            pieceGrid.Position = new Vector2(0, 0);
+            this.Add(pieceGrid);
+
+            for (int i = 2; i < pieceGrid.Columns - 2; i++) 
             {
-                for (int j = 0; j < pieceGrid.Rows; j++)
+                for (int j = 2; j < pieceGrid.Rows; j++)
                 {
                     bgGrid = new SpriteGameObject("sprites/block",-100);
                     bgGrid.Position = pieceGrid.Position + new Vector2(pieceGrid.CellWidth * i, pieceGrid.CellHeight * j);
@@ -38,7 +38,7 @@ namespace Practicum2.states
                 }
             }
 
-            pieceGrid.Add(piece1, 0, 0);
+            pieceGrid.Add(piece1, 8, 0);
             this.Add(piece2);
             debugText = new TextGameObject("fonts/MainMenuFont");
             this.Add(debugText);
@@ -56,15 +56,35 @@ namespace Practicum2.states
                 switch(newPieceType)
                 {
                     case PieceType.Straight:
-                        piece1 = new StraightPiece(false, 1, 4, "piece1");
+                        piece1 = new StraightPiece(false, "piece1");
                         break;
                         
                     case PieceType.T:
-                        piece1 = new TPiece(false, 3, 2, "piece1");
+                        piece1 = new TPiece(false, "piece1");
+                        break;
+
+                    case PieceType.Block:
+                        piece1 = new BlockPiece(false, "piece1");
+                        break;
+
+                    case PieceType.L:
+                        piece1 = new LMirrorPiece(false, "piece1");
+                        break;
+
+                    case PieceType.LMirror:
+                        piece1 = new LMirrorPiece(false, "piece1");
+                        break;
+
+                    case PieceType.Z:
+                        piece1 = new LMirrorPiece(false, "piece1");
+                        break;
+
+                    case PieceType.ZMirror:
+                        piece1 = new LMirrorPiece(false, "piece1");
                         break;
 
                     default:
-                        piece1 = new StraightPiece(false, 1, 4, "piece1");
+                        piece1 = null;
                         break;
                 }
                 
