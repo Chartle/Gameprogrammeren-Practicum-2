@@ -42,7 +42,7 @@ namespace Practicum2.gameobjects
 
         public void Rotate(string dir)
         {
-            //todo turn around point
+            int moveX, moveY;
             bool[,] tempArray = new bool[Columns, Rows];
             if(pieceType == PieceType.Block)
             {
@@ -72,30 +72,51 @@ namespace Practicum2.gameobjects
                     Debug.Print("Rotated right");
                     break;
             }
-            pieceArray = tempArray;
-            /*for (int x = 0; x < Columns; x++)
+
+            // Repeated code for checking in different directions
+            for (int x = 0; x < Columns; x++ )
             {
-                for (int y = 0; y < Rows; y++)
+                for(int y = Rows - 1; y >= 0; y--)
                 {
-                    if(pieceArray[x,y])
+                    if(tempArray[x,y])
                     {
-                        if(currX + x < 2)
+                        if (y + currY > parentGrid.Rows - 1 || parentGrid.GetBool(currX + x, currY + y - 1))
                         {
-                            if(CanMove("right"))
+                            if(CanMove("up"))
                             {
-                                Move(1, 0, true);
+                                Move(0, -1, true);
                             }
-                        }
-                        if(currX +  x > parentGrid.Columns - 2)
-                        {
-                            if(CanMove("left"))
+                            else
                             {
-                                Move(-1, 0, true);
+                                return;
                             }
                         }
                     }
                 }
-            }*/
+            }
+
+            for (int x = 0; x < Columns; x++)
+            {
+                for (int y = Rows - 1; y >= 0; y--)
+                {
+                    if (tempArray[x, y])
+                    {
+                        if (y + currY > parentGrid.Rows - 1 || parentGrid.GetBool(currX + x, currY + y - 1))
+                        {
+                            if (CanMove("up"))
+                            {
+                            //    Move(0, -1, true);
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            pieceArray = tempArray;
         }
 
         public void Move(int newX, int newY, bool relative)
@@ -120,6 +141,26 @@ namespace Practicum2.gameobjects
         {
             switch (direction)
             {
+                case "up":
+                    for (int x = 0; x < Columns; x++ )
+                    {
+                        for(int y = 0; y < Rows; y++)
+                        {
+                            if(pieceArray[x,y])
+                            {
+                                if (parentGrid.GetBool(currX + x, currY + y - 1)) 
+                                {
+                                    return false;
+                                }
+                                if (currY + y - 1 < 2) 
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                    return true;
+
                 case "down":
                     for (int x = 0; x < Columns; x++ )
                     {
@@ -244,30 +285,6 @@ namespace Practicum2.gameobjects
                         return;
                     }
                 }
-
-                for (int x = 0; x < Columns; x++)
-                {
-                    for (int y = 0; y < Rows; y++)
-                    {
-                        if (pieceArray[x, y])
-                        {
-                            if (x + currX < 2)
-                                moveX++;
-                        }
-                    }
-                }
-                for (int x = Columns - 1; x >= 0; x--)
-                {
-                    for (int y = 0; y < Rows; y++)
-                    {
-                        if (pieceArray[x, y])
-                        {
-                            parentGrid.AddBool(true, currX + x, currY + y);
-                            parentGrid.AddColor(color, currX + x, currY + y);
-                        }
-                    }
-                }
-
                 if (moveX != 0 || moveY != 0)
                     Move(moveX, moveY, true);
                 

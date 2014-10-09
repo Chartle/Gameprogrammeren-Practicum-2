@@ -12,8 +12,11 @@ namespace Practicum2.gameobjects
     {
         protected bool[,] boolGrid;
         protected Color[,] colorGrid;
-        protected int objCounter;
+        protected int objCounter, multiplier, removedY;
         SpriteGameObject block;
+        float timer;
+        bool timerstarted;
+
         public TetrisGrid(int columns, int rows, int layer = 0, string id = ""): base(columns, rows, layer, id)
         {
             boolGrid = new bool[columns, rows];
@@ -26,6 +29,73 @@ namespace Practicum2.gameobjects
                 }
 
             objCounter = 0;
+            removedY = 0;
+            timer = 0.6f;
+            timerstarted = false;
+            multiplier = 0;
+        }
+
+        //checks if there is a full row then removes them later with a timer
+        public void CheckRemoveRow()
+        {
+            int counter;
+            multiplier = 0;
+            for (int y = 2; y < Rows; y++)
+            {
+                counter = 0;
+                //grid is 2 bigger at each ends
+                for (int x = 2; x < Columns - 2; x++)
+                {
+                    if (boolGrid[x, y] == false)
+                    {
+                        counter++;
+                    }
+                }
+                if (counter == 0)
+                {
+                    multiplier++;
+                    for (int x = 2; x < Columns - 2; x++)
+                    {
+                        //ADD SCORE
+                        colorGrid[x, y] = Color.White;
+                        boolGrid[x, y] = false;
+                        removedY = y;
+                    }
+                    //START TIMER
+                    timer = 1;
+                    timerstarted = true;
+                }
+            }
+            //movegrid
+            if (timer < 0)
+            {
+                {
+                    for (int y2 = removedY; y2 >= 2; y2--)
+                    {
+                        for (int x2 = 2; x2 < Columns - 2; x2++)
+                        {
+                            Debug.Print("y2:" + y2 + " y: " + removedY);
+                            colorGrid[x2, y2] = colorGrid[x2, y2 - 1];
+                            boolGrid[x2, y2] = boolGrid[x2, y2 - 1];
+                            //removedY++;
+                        }
+                    }
+                }
+                //if(IsRowEmpty(removedY))
+                    timerstarted = false;
+                timer = 0.3f;
+            }
+        }
+
+        public bool IsRowEmpty(int y)
+        {
+            for(int x = 0; x < Columns; x++)
+            {
+                if(y < Rows)
+                    if (boolGrid[x, y])
+                        return false;
+            }
+            return true;
         }
 
         public void AddAll(GameObject obj, bool booltemp, Color color, int x, int y)
@@ -118,6 +188,14 @@ namespace Practicum2.gameobjects
 
         public override void Update(GameTime gameTime)
         {
+
+            Debug.Print(timer.ToString());
+            if (timerstarted)
+            {
+                timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            CheckRemoveRow();
+
             objCounter = 0;
             foreach (GameObject obj in grid)
             {
