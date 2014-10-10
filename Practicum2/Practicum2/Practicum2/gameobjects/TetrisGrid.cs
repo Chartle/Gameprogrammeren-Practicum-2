@@ -14,7 +14,7 @@ namespace Practicum2.gameobjects
         protected Color[,] colorGrid;
         protected int objCounter, multiplier, removedY;
         SpriteGameObject block;
-        float timer;
+        float timer, maxTimer;
         bool timerstarted;
 
         public TetrisGrid(int columns, int rows, int layer = 0, string id = ""): base(columns, rows, layer, id)
@@ -30,7 +30,8 @@ namespace Practicum2.gameobjects
 
             objCounter = 0;
             removedY = 0;
-            timer = 0.6f;
+            maxTimer = 0.05f;
+            timer = maxTimer;
             timerstarted = false;
             multiplier = 0;
         }
@@ -62,7 +63,7 @@ namespace Practicum2.gameobjects
                         removedY = y;
                     }
                     //START TIMER
-                    timer = 1;
+                    timer = maxTimer;
                     timerstarted = true;
                 }
             }
@@ -83,7 +84,7 @@ namespace Practicum2.gameobjects
                 }
                 //if(IsRowEmpty(removedY))
                     timerstarted = false;
-                timer = 0.3f;
+                timer = maxTimer;
             }
         }
 
@@ -189,7 +190,7 @@ namespace Practicum2.gameobjects
         public override void Update(GameTime gameTime)
         {
 
-            Debug.Print(timer.ToString());
+            //Debug.Print(timer.ToString());
             if (timerstarted)
             {
                 timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;

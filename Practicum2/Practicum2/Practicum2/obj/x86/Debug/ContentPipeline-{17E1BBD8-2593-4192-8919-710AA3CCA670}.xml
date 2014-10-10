@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\MainMenuFont.xnb</Output>
-      <Time>2014-09-30T15:07:16.1073901+02:00</Time>
+      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\MainMenuFont.xnb</Output>
+      <Time>2014-10-10T11:07:12.989853+02:00</Time>
     </Item>
     <Item>
       <Source>fonts\SpelFont.spritefont</Source>
@@ -16,8 +16,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\SpelFont.xnb</Output>
-      <Time>2014-09-30T18:15:55.6126702+02:00</Time>
+      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\SpelFont.xnb</Output>
+      <Time>2014-10-10T11:07:12.999889+02:00</Time>
     </Item>
     <Item>
       <Source>sprites\block.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb</Output>
-      <Time>2014-09-30T18:15:55.5970647+02:00</Time>
+      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb</Output>
+      <Time>2014-10-10T11:07:13.0198743+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -35,10 +35,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\</RootDirectory>
-      <LoggerRootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\</RootDirectory>
+      <LoggerRootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

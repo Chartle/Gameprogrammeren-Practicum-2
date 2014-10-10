@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using System.Diagnostics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Practicum2.gameobjects
 {
@@ -40,14 +40,16 @@ namespace Practicum2.gameobjects
             base.Update(gameTime);
         }
 
-        public void Rotate(string dir)
+        public bool[,] Rotate(string dir)
         {
-            int moveX, moveY;
             bool[,] tempArray = new bool[Columns, Rows];
+           
+
             if(pieceType == PieceType.Block)
             {
-                return;
+                return pieceArray;
             }
+
             switch (dir)
             {
                 case "left":
@@ -55,6 +57,7 @@ namespace Practicum2.gameobjects
                     {
                         for (int y = 0; y < Rows; y++)
                         {
+                            Debug.Print("adding bool to new array");
                             tempArray[y, Columns - 1 - x] = pieceArray[x, y];
                         }
                     }
@@ -66,232 +69,193 @@ namespace Practicum2.gameobjects
                     {
                         for (int y = 0; y < Rows; y++)
                         {
+                            Debug.Print("adding bool to new array: " + tempArray[Rows - 1 - y, x] + " becomes " + pieceArray[x, y]);
                             tempArray[Rows - 1 - y, x] = pieceArray[x, y];
                         }
                     }
                     Debug.Print("Rotated right");
                     break;
             }
-
-            // Repeated code for checking in different directions
-            for (int x = 0; x < Columns; x++ )
-            {
-                for(int y = Rows - 1; y >= 0; y--)
-                {
-                    if(tempArray[x,y])
-                    {
-                        if (y + currY > parentGrid.Rows - 1 || parentGrid.GetBool(currX + x, currY + y - 1))
-                        {
-                            if(CanMove("up"))
-                            {
-                                Move(0, -1, true);
-                            }
-                            else
-                            {
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-
+            Debug.Print("" + pieceArray);
             for (int x = 0; x < Columns; x++)
             {
-                for (int y = Rows - 1; y >= 0; y--)
+                for (int y = 0; y < Rows; y++)
                 {
-                    if (tempArray[x, y])
+                    Debug.Print("" + tempArray[x,y]);
+                   
+                }
+            }
+            Debug.Print("" + tempArray);
+            return tempArray;
+
+            //Vector2 moveVector = OutsideGrid();
+        }
+
+        protected Vector2 OutsideGrid()
+        {
+            Vector2 returnVector = Vector2.Zero;
+            for (int x = 0; x < Columns; x++)
+            {
+                for(int y = 0; y < Rows; y++)
+                {
+                    if(pieceArray[x,y])
                     {
-                        if (y + currY > parentGrid.Rows - 1 || parentGrid.GetBool(currX + x, currY + y - 1))
+                        if(currX + x > parentGrid.Columns - 2)
                         {
-                            if (CanMove("up"))
-                            {
-                            //    Move(0, -1, true);
-                            }
-                            else
-                            {
-                                return;
-                            }
+                            returnVector.X = -1;
+                        }
+                        
+                        else if(currX + x < 2)
+                        {
+                            returnVector.X = 1;
+                        }
+
+                        if(currY + y > parentGrid.Rows - 2)
+                        {
+                            returnVector.Y = -1;
                         }
                     }
                 }
             }
-            
-            pieceArray = tempArray;
+            return returnVector;
         }
 
         public void Move(int newX, int newY, bool relative)
         {
-            int x = (int)(position.X / parentGrid.CellWidth);
-            int y = (int)(position.Y / parentGrid.CellHeight);
-
             if (relative)
             {
-                parentGrid.Add(this, x + newX, y + newY);
-                Debug.Print("Moving relatively to: " + (x + newX) + ", " + (y + newY));
+                parentGrid.Add(this, currX + newX, currY + newY);
+                Debug.Print("Moving relatively to: " + (currX + newX) + ", " + (currY + newY));
             }
             else
             {
                 parentGrid.Add(this, newX, newY);
-                Debug.Print("Moving to: " + newX + ", " + y);
+                Debug.Print("Moving to: " + newX + ", " + newY);
             }
-            parentGrid.Add(null, x, y);
+            parentGrid.Add(null, currX, currY);
         }
         
-        public bool CanMove(string direction)
+        public bool CanMove(int moveX, int moveY, bool relative)
         {
-            switch (direction)
+            if(relative)
+                for (int x = 0; x < Columns; x++ )
+                {
+                    for(int y = 0; y < Rows; y++)
+                    {
+                        if(pieceArray[x,y])
+                        {
+                            if (parentGrid.GetBool(currX + x + moveX, currY + y + moveY)) 
+                            {
+                                return false;
+                            }
+                            if (currX + x + moveX < 2 || currX + x + moveX > parentGrid.Columns - 3 || currY + y + moveY > parentGrid.Rows - 1) 
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            else
             {
-                case "up":
-                    for (int x = 0; x < Columns; x++ )
-                    {
-                        for(int y = 0; y < Rows; y++)
-                        {
-                            if(pieceArray[x,y])
-                            {
-                                if (parentGrid.GetBool(currX + x, currY + y - 1)) 
-                                {
-                                    return false;
-                                }
-                                if (currY + y - 1 < 2) 
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                    return true;
-
-                case "down":
-                    for (int x = 0; x < Columns; x++ )
-                    {
-                        for(int y = Rows-1; y >= 0; y--)
-                        {
-                            if(pieceArray[x,y])
-                            {
-                                if (parentGrid.GetBool(currX + x, currY + y + 1)) 
-                                {
-                                    return false;
-                                }
-                                if (currY + y + 1 >= parentGrid.Rows) 
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                    return true;
-
-                case "left":
+                for (int x = 0; x < Columns; x++)
+                {
                     for (int y = 0; y < Rows; y++)
                     {
-                        for (int x = 0; x < Columns; x++)
+                        if (pieceArray[x, y])
                         {
-                            if (pieceArray[x, y])
+                            if (parentGrid.GetBool(x + moveX, y + moveY))
                             {
-                                if (parentGrid.GetBool(currX + x -1, currY + y))
-                                {
-                                    return false;
-                                }
-                                if(currX + x - 1 < 2)
-                                {
-                                    return false;
-                                }
+                                return false;
+                            }
+                            if (x + moveX < 2 || x + moveX > parentGrid.Columns - 3 || y + moveY > parentGrid.Rows - 1)
+                            {
+                                return false;
                             }
                         }
                     }
-                    return true;
-
-                case "right":
-                    for (int y = 0; y < Rows; y++)
-                    {
-                        for (int x = Columns - 1; x >= 0; x--)
-                        {
-                            if (pieceArray[x, y])
-                            {
-                                if (parentGrid.GetBool(currX + x + 1, currY + y))
-                                {
-                                    return false;
-                                }
-                                if (currX + x + 1 >= parentGrid.Columns - 2) 
-                                {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                    return true;
-                default:
-                    return false;
+                }
             }
+            return true;
         }
 
         public override void HandleInput(InputHelper inputHelper)
         {
             state = Tetris.GameStateManager.GetGameState("onePlayerState") as GameObjectList;
             parentGrid = state.Find("pieceGrid") as TetrisGrid;
+            bool[,] tempArray = new bool[Columns, Rows];
+           
+            Array.Copy(pieceArray, 0, tempArray, 0, pieceArray.Length);
             
-            if(inputHelper.IsKeyDown(Keys.S))
+            if (inputHelper.IsKeyDown(Keys.S))
             {
                 maxMoveTime = 0.05f;
-                if(moveTime > 0.05f)
+                if (moveTime > 0.05f)
                     moveTime = 0.05f;
             }
             else
             {
                 maxMoveTime = 1f;
             }
-
             currX = (int)(position.X / parentGrid.CellWidth);
             currY = (int)(position.Y / parentGrid.CellHeight);
 
             if (!isNextPiece)
             {
-                if (inputHelper.KeyPressed(Keys.Q))
-                {
-                    Rotate("left");
-                }
-
-                if(inputHelper.KeyPressed(Keys.E))
-                {
-                    Rotate("right");
-                }
-
                 int moveX = 0, moveY = 0;
                 if (inputHelper.KeyPressed(Keys.A) && !hasUpdated)
                 {
-                    if (CanMove("left"))
-                    {
-                        moveX--;
-                    }
+                    moveX--;
                 }
+
                 if (inputHelper.KeyPressed(Keys.D) && !hasUpdated)
                 {
-                    if (CanMove("right"))
-                    {
-                        moveX++;
-                    }
+                    moveX++;    
                 }
 
                 if (moveTime < 0)
                 {
                     moveTime = maxMoveTime;
-                    if (CanMove("down"))
+                    moveY++;
+                    
+                }
+
+                if (inputHelper.KeyPressed(Keys.Q))
+                {
+                    tempArray = Rotate("left");
+                    //Debug.Print("Rotated left, leftest block is " + LeftestBlock + ", rightest block is " + RightestBlock);
+                }
+
+                if (inputHelper.KeyPressed(Keys.E))
+                {
+                    tempArray = Rotate("right");
+                }
+
+                if (moveX != 0 || moveY != 0)
+                {
+                    Array.Copy(tempArray, 0, pieceArray, 0, pieceArray.Length);
+
+                    int newX = currX + moveX;
+                    newX = (int)MathHelper.Clamp(newX, 2 - LeftestBlock, parentGrid.Columns - (3 + RightestBlock));
+                    int newY = currY + moveY;
+                    newY = (int)MathHelper.Clamp(newY, 0, parentGrid.Rows - 1);
+                    Debug.Print("newx: " + newX + ", newY: " + newY);
+
+                    if (CanMove(newX, newY, false))
                     {
-                        moveY++;
+                        Debug.Print("moving to " + newX + ", " + newY);
+                        Move(newX, newY, false); 
                     }
                     else
                     {
+                        Debug.Print("stopping block, because newx is " + newX + " and newy is " + newY);
                         Stop();
-                        return;
                     }
                 }
-                if (moveX != 0 || moveY != 0)
-                    Move(moveX, moveY, true);
-                
                 hasUpdated = true;
             }
         }
 
+        
         public void Stop()
         {
             parentGrid.Add(null, currX, currY);
@@ -329,7 +293,6 @@ namespace Practicum2.gameobjects
         {
             //Array tempArray = Enum.GetValues(typeof(PieceType));
             //pieceType = (PieceType)tempArray.GetValue(Tetris.Random.Next(tempArray.Length));
-            base.Reset();
         }
 
         public PieceType PieceType
@@ -366,6 +329,83 @@ namespace Practicum2.gameobjects
         {
             get { return isNextPiece; }
             set { isNextPiece = value; }
+        }
+
+
+        private int LeftestBlock
+        {
+            get
+            {
+                for (int x = 0; x < Columns; x++)
+                {
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            Debug.Print("Leftest block is " + x);
+                            return x;
+                        }
+                    }
+                }
+            return -1;
+            }
+        }
+
+        private int RightestBlock
+        {
+            get
+            {
+                for (int x = Columns - 1; x >= 0; x--)
+                {
+                    for (int y = 0; y < Rows; y++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            Debug.Print("Rightest block is " + x);
+                            return x;
+                        }
+                    }
+                }
+            return -1;
+            }
+        }
+
+        private int HighestBlock
+        {
+            get
+            {
+                for (int y = 0; y < Rows; y++)
+                {
+                    for (int x = 0; x < Columns; x++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            Debug.Print("Highest block is " + y);
+                            return y;
+                        }
+                    }
+                }
+                return -1;
+            }
+        }
+
+        private int LowestBlock
+        {
+            get
+            {
+                for (int y = Rows - 1; y >= 0; y--)
+                {
+                    for (int x = 0; x < Columns; x++)
+                    {
+                        if (pieceArray[x, y])
+                        {
+                            Debug.Print("Lowest block is " + y);
+                            return y;
+                        }
+                    }
+                }
+                return -1;
+            }
         }
     }
 }

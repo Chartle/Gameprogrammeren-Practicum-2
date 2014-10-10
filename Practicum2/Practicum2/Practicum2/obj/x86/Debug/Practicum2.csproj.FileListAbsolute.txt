@@ -20,3 +20,14 @@ D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Pract
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Practicum2.pdb
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\GameManagement.dll
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\GameManagement.pdb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\MainMenuFont.xnb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\SpelFont.xnb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Practicum2.exe
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Practicum2.pdb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\GameManagement.dll
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\GameManagement.pdb
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Practicum2.csprojResolveAssemblyReference.cache
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Practicum2.exe
+D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Practicum2.pdb
