@@ -20,7 +20,6 @@ namespace Practicum2.gameobjects.pieces
                 pieceArray[x, 0] = true;
                 pieceArray[x - 1, 1] = true;
             }
-            pieceArray[0, 2] = true;
 
             color = Color.Green;
             pieceType = PieceType.ZMirror;

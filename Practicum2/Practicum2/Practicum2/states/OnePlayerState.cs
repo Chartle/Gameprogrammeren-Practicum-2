@@ -52,6 +52,8 @@ namespace Practicum2.states
 
             if(pieceGrid.ObjCounter == 0)
             {
+                piece2.PieceType = piece2.RandomPiece();
+
                 PieceType newPieceType = piece2.PieceType;
                 switch(newPieceType)
                 {

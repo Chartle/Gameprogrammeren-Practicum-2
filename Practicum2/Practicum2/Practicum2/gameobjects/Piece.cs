@@ -20,6 +20,7 @@ namespace Practicum2.gameobjects
         protected TetrisGrid parentGrid;
         protected GameObjectList state;
         protected int currX, currY;
+        protected int nextRandomPieceGetal;
 
         public Piece(bool isNextPiece, string id = "", int size = 0, string assetname = "sprites/block")
             : base(assetname, 0, id)
@@ -30,6 +31,12 @@ namespace Practicum2.gameobjects
             {
                 position = new Vector2(Tetris.Screen.X - 120, 120);
             }
+        }
+
+        public PieceType PieceType
+        {
+            get { return pieceType; }
+            set { pieceType = value; }
         }
 
         public override void Update(GameTime gameTime)
@@ -90,6 +97,24 @@ namespace Practicum2.gameobjects
 
             //Vector2 moveVector = OutsideGrid();
         }
+
+        public PieceType RandomPiece()
+        {
+            nextRandomPieceGetal = Tetris.Random.Next(7);
+            switch (nextRandomPieceGetal)
+            {
+                case 1: this.PieceType = PieceType.Block; break;
+                case 2: this.PieceType = PieceType.L; break;
+                case 3: this.PieceType = PieceType.LMirror; break;
+                case 4: this.PieceType = PieceType.Straight; break;
+                case 5: this.PieceType = PieceType.T; break;
+                case 6: this.PieceType = PieceType.Z; break;
+                case 0: this.PieceType = PieceType.ZMirror; break;
+            }
+            Debug.Print("RANDOMNUMBER: " + nextRandomPieceGetal);
+            return pieceType;
+        }
+
 
         protected Vector2 OutsideGrid()
         {
@@ -295,7 +320,7 @@ namespace Practicum2.gameobjects
             //pieceType = (PieceType)tempArray.GetValue(Tetris.Random.Next(tempArray.Length));
         }
 
-        public PieceType PieceType
+        public PieceType GetPieceType
         {
             get { return pieceType; }
             set { pieceType = value; }

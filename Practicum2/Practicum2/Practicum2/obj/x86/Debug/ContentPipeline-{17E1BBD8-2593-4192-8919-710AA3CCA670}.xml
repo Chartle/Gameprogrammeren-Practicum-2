@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\MainMenuFont.xnb</Output>
-      <Time>2014-10-10T11:07:12.989853+02:00</Time>
+      <Output>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\MainMenuFont.xnb</Output>
+      <Time>2014-10-10T16:18:12.9079851+02:00</Time>
     </Item>
     <Item>
       <Source>fonts\SpelFont.spritefont</Source>
@@ -16,8 +16,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\SpelFont.xnb</Output>
-      <Time>2014-10-10T11:07:12.999889+02:00</Time>
+      <Output>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\fonts\SpelFont.xnb</Output>
+      <Time>2014-10-10T16:18:12.9179923+02:00</Time>
     </Item>
     <Item>
       <Source>sprites\block.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb</Output>
-      <Time>2014-10-10T11:07:13.0198743+02:00</Time>
+      <Output>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb</Output>
+      <Time>2014-10-10T16:18:12.9500199+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -35,10 +35,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\</RootDirectory>
-      <LoggerRootDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\</RootDirectory>
+      <LoggerRootDirectory>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -66,8 +66,8 @@
         <Value>2011-09-01T16:22:30+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-09-08T12:30:07.8729511+02:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2014-09-05T17:40:57.5695904+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

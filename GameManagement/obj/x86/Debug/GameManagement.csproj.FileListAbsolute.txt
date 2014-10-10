@@ -22,3 +22,9 @@ D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gamep
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\GameManagement.dll
 D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\GameManagement.pdb
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\bin\x86\Debug\GameManagement.dll
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\bin\x86\Debug\GameManagement.pdb
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\GameManagement.csprojResolveAssemblyReference.cache
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\GameManagement.dll
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\GameManagement\obj\x86\Debug\GameManagement.pdb

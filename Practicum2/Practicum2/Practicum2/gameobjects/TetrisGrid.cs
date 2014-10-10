@@ -40,7 +40,6 @@ namespace Practicum2.gameobjects
         public void CheckRemoveRow()
         {
             int counter;
-            multiplier = 0;
             for (int y = 2; y < Rows; y++)
             {
                 counter = 0;
@@ -70,21 +69,24 @@ namespace Practicum2.gameobjects
             //movegrid
             if (timer < 0)
             {
+                for (int i = 0; i < multiplier; i++)
                 {
                     for (int y2 = removedY; y2 >= 2; y2--)
                     {
                         for (int x2 = 2; x2 < Columns - 2; x2++)
                         {
-                            Debug.Print("y2:" + y2 + " y: " + removedY);
                             colorGrid[x2, y2] = colorGrid[x2, y2 - 1];
                             boolGrid[x2, y2] = boolGrid[x2, y2 - 1];
                             //removedY++;
                         }
                     }
                 }
+
+                
                 //if(IsRowEmpty(removedY))
                     timerstarted = false;
                 timer = maxTimer;
+                multiplier = 0;
             }
         }
 
