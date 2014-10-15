@@ -12,12 +12,12 @@ namespace Practicum2.gameobjects.pieces
 {
     class ZPiece : Piece
     {
-        public ZPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block"): base(isNextPiece, id, size)
+        public ZPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block"): base(isNextPiece, size, id)
         {
             for (int x = 0; x < 2; x++)
             {
-                pieceArray[x, 0] = true;
-                pieceArray[x + 1, 1] = true;
+                pieceGrid[x, 0] = true;
+                pieceGrid[x + 1, 1] = true;
             }
 
             color = Color.Red;

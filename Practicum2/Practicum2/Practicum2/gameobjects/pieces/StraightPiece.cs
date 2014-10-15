@@ -12,10 +12,10 @@ namespace Practicum2.gameobjects.pieces
 {
     class StraightPiece : Piece
     {  
-        public StraightPiece(bool isNextPiece, string id = "", int size = 4, string assetname = "sprites/block") : base(isNextPiece, id, size)
+        public StraightPiece(bool isNextPiece, string id = "", int size = 4, string assetname = "sprites/block") : base(isNextPiece, size, id)
         {
             for (int y = 0; y < 4; y++)
-                pieceArray[1, y] = true;
+                pieceGrid[1, y] = true;
 
             color = Color.Cyan;
             pieceType = PieceType.Straight;

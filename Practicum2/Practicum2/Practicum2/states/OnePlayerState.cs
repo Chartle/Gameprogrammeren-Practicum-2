@@ -16,21 +16,21 @@ namespace Practicum2.states
 
         public OnePlayerState()
         {
-            piece1 = new LPiece(false, "piece1");
+            piece1 = new StraightPiece(false, "piece1");
             piece1.MaxMoveTime = 1f;
 
             piece2 = new StraightPiece(true, "piece2");
             piece2.MaxMoveTime = 1f;
             
-            pieceGrid = new TetrisGrid(16, 22, 0, "pieceGrid");
+            pieceGrid = new TetrisGrid(16, 25, 0, "pieceGrid");
             pieceGrid.CellWidth = 30;
             pieceGrid.CellHeight = 30;
-            pieceGrid.Position = new Vector2(0, 0);
+            pieceGrid.Position = new Vector2(0, -90);
             this.Add(pieceGrid);
 
             for (int i = 2; i < pieceGrid.Columns - 2; i++) 
             {
-                for (int j = 2; j < pieceGrid.Rows; j++)
+                for (int j = 5; j < pieceGrid.Rows; j++)
                 {
                     bgGrid = new SpriteGameObject("sprites/block",-100);
                     bgGrid.Position = pieceGrid.Position + new Vector2(pieceGrid.CellWidth * i, pieceGrid.CellHeight * j);
@@ -38,7 +38,7 @@ namespace Practicum2.states
                 }
             }
 
-            pieceGrid.Add(piece1, 8, 0);
+            pieceGrid.Add(piece1, 6, 15 - piece1.Rows);
             this.Add(piece2);
             debugText = new TextGameObject("fonts/MainMenuFont");
             this.Add(debugText);
@@ -59,7 +59,7 @@ namespace Practicum2.states
                         piece1 = new StraightPiece(false, "piece1");
                         break;
                         
-                    case PieceType.T:
+                    /*case PieceType.T:
                         piece1 = new TPiece(false, "piece1");
                         break;
 
@@ -82,13 +82,13 @@ namespace Practicum2.states
                     case PieceType.ZMirror:
                         piece1 = new ZMirrorPiece(false, "piece1");
                         break;
-
+                        */
                     default:
                         piece1 = null;
                         break;
                 }
-                
-                pieceGrid.Add(piece1, 6, 0);
+
+                pieceGrid.Add(piece1, 6, 5 - piece1.Rows);
             }
         }
     }

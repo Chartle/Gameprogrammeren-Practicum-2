@@ -12,14 +12,13 @@ namespace Practicum2.gameobjects.pieces
 {
     class LPiece : Piece
     {
-        public LPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block")
-            : base(isNextPiece, id, size)
+        public LPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block") : base(isNextPiece, size, id)
         {
             for (int y = 0; y < 3; y++)
             {
-                pieceArray[1, y] = true;
+                pieceGrid[1, y] = true;
             }
-            pieceArray[2, 2] = true;
+            pieceGrid[2, 2] = true;
 
             color = Color.Orange;
             pieceType = PieceType.L;
