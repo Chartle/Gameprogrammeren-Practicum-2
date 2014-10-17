@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using System.Diagnostics;
 
 namespace Practicum2.gameobjects
@@ -16,6 +17,9 @@ namespace Practicum2.gameobjects
         SpriteGameObject block;
         float timer, maxTimer;
         bool timerstarted;
+        protected int score;
+        public int level;
+        protected int totalRemovedRows;
 
         public TetrisGrid(int columns, int rows, int layer = 0, string id = ""): base(columns, rows, layer, id)
         {
@@ -28,12 +32,27 @@ namespace Practicum2.gameobjects
                     colorGrid[x, y] = Color.White;
                 }
 
+            score = 0;
             objCounter = 0;
             removedY = 0;
             maxTimer = 0.05f;
             timer = maxTimer;
             timerstarted = false;
             multiplier = 0;
+            level = 1;
+            totalRemovedRows = 0;
+
+        }
+        
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
+        
+        public int Level
+        {
+            get { return level; }
         }
 
         //checks if there is a full row then removes them later with a timer
@@ -64,6 +83,7 @@ namespace Practicum2.gameobjects
                     //START TIMER
                     timer = maxTimer;
                     timerstarted = true;
+                    totalRemovedRows++;
                 }
             }
             //movegrid
@@ -82,7 +102,8 @@ namespace Practicum2.gameobjects
                     }
                 }
 
-                
+                score += multiplier * multiplier;
+                Tetris.AssetManager.PlayMusic("sprites/soundeffect", false);
                 //if(IsRowEmpty(removedY))
                     timerstarted = false;
                 timer = maxTimer;
@@ -191,6 +212,7 @@ namespace Practicum2.gameobjects
 
         public override void Update(GameTime gameTime)
         {
+            level = (totalRemovedRows / 10) + 1;
 
             //Debug.Print(timer.ToString());
             if (timerstarted)

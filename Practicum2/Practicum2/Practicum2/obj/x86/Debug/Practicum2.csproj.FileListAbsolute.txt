@@ -42,3 +42,5 @@ D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj
 D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Practicum2.exe
 D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\obj\x86\Debug\Practicum2.pdb
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\soundeffect.xnb
+D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\soundeffect.wma

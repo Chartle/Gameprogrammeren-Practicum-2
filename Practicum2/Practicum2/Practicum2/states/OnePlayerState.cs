@@ -13,6 +13,8 @@ namespace Practicum2.states
         SpriteGameObject bgGrid;
         Piece piece1, piece2;
         TextGameObject debugText;
+        TextGameObject scoreText;
+        TextGameObject levelText;
 
         public OnePlayerState()
         {
@@ -42,14 +44,29 @@ namespace Practicum2.states
             this.Add(piece2);
             debugText = new TextGameObject("fonts/MainMenuFont");
             this.Add(debugText);
+
+            scoreText = new TextGameObject("fonts/MainMenuFont", 10);
+            scoreText.Position = new Vector2(10, 17);
+
+            levelText = new TextGameObject("fonts/MainMenuFont", 10);
+            levelText.Position = new Vector2(10, 35);
+
+            this.Add(levelText);
+            this.Add(scoreText);
         }
 
         public override void Update(GameTime gameTime)
         {
             debugText.Text = "" + piece1.MoveTime;
+            scoreText.Text = "Score: " + pieceGrid.Score.ToString();
+            levelText.Text = "Level: " + pieceGrid.Level.ToString();
             
+            
+            piece1.MaxMoveTime = 0.55f - ((float)pieceGrid.Level / 100.0f) * 0.5f;
+            if (piece1.MaxMoveTime < 0.05f)
+                piece1.MaxMoveTime = 0.05f;
             base.Update(gameTime);
-
+            
             if(pieceGrid.ObjCounter == 0)
             {
                 piece2.PieceType = piece2.RandomPiece();

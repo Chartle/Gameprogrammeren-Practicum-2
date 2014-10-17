@@ -219,8 +219,9 @@ namespace Practicum2.gameobjects
             }
             else
             {
-                maxMoveTime = 1f;
+               // maxMoveTime = 1f;
             }
+           // maxMoveTime += (float)( * 0.1);
             currX = (int)(position.X / parentGrid.CellWidth);
             currY = (int)(position.Y / parentGrid.CellHeight);
 
@@ -331,8 +332,8 @@ namespace Practicum2.gameobjects
             set
             { 
                 maxMoveTime = value;
-                moveTime = maxMoveTime;
             }
+            get { return maxMoveTime; }
         }
 
         public float MoveTime

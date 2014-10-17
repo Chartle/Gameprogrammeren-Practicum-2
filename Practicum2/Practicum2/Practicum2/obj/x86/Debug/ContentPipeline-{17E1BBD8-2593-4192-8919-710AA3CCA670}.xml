@@ -28,6 +28,16 @@
       <Output>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\block.xnb</Output>
       <Time>2014-10-10T16:18:12.9500199+02:00</Time>
     </Item>
+    <Item>
+      <Source>sprites\soundeffect.mp3</Source>
+      <Name>sprites\soundeffect</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\soundeffect.xnb</Output>
+      <Extra>D:\prog\Csharp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2\bin\x86\Debug\Content\sprites\soundeffect.wma</Extra>
+      <Time>2014-10-17T12:11:36.7334195+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{17E1BBD8-2593-4192-8919-710AA3CCA670}</ContentProjectGUID>
