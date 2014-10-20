@@ -1,3 +1,0 @@
-D:\My Projects\Game Base\Practicum2\Practicum2\Practicum2Content\obj\x86\Debug\Practicum2Content.contentprojResolveAssemblyReference.cache
-D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\obj\x86\Debug\Practicum2Content.contentprojResolveAssemblyReference.cache
-D:\My Projects\Gameprogrammeren Practica\temp\Gameprogrammeren-Practicum-2\Gameprogrammeren-Practicum-2\Practicum2\Practicum2\Practicum2Content\obj\x86\Debug\Practicum2Content.contentprojResolveAssemblyReference.cache
