@@ -92,8 +92,8 @@ public class GameEnvironment : Game
         inputHelper.Update();
         if (inputHelper.KeyPressed(Keys.Escape))
             this.Exit();
-        //if (inputHelper.KeyPressed(Keys.F5))
-            //SetFullScreen(!graphics.IsFullScreen);
+        if (inputHelper.KeyPressed(Keys.F5))
+            SetFullScreen(!graphics.IsFullScreen);
         gameStateManager.HandleInput(inputHelper);
     }
 

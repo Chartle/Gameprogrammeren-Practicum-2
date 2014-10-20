@@ -36,9 +36,11 @@ namespace Practicum2.gameobjects
             multiplier = 0;
         }
 
+        //checks if there is a full row then removes them later with a timer
         public void CheckRemoveRow()
         {
             int counter;
+            multiplier = 0;
             for (int y = 2; y < Rows; y++)
             {
                 counter = 0;
@@ -68,12 +70,12 @@ namespace Practicum2.gameobjects
             //movegrid
             if (timer < 0)
             {
-                for (int i = 0; i < multiplier; i++)
                 {
                     for (int y2 = removedY; y2 >= 2; y2--)
                     {
                         for (int x2 = 2; x2 < Columns - 2; x2++)
                         {
+                            Debug.Print("y2:" + y2 + " y: " + removedY);
                             colorGrid[x2, y2] = colorGrid[x2, y2 - 1];
                             boolGrid[x2, y2] = boolGrid[x2, y2 - 1];
                             //removedY++;
@@ -81,9 +83,8 @@ namespace Practicum2.gameobjects
                     }
                 }
                 //if(IsRowEmpty(removedY))
-                timerstarted = false;
+                    timerstarted = false;
                 timer = maxTimer;
-                multiplier = 0;
             }
         }
 
@@ -175,7 +176,7 @@ namespace Practicum2.gameobjects
                 {
                     if (boolGrid[x,y])
                     {
-                        if (y > 4)
+                        if (y > 1)
                         {
                             block = new SpriteGameObject("sprites/block", 0);
                             block.Sprite.Draw(spriteBatch, position + new Vector2(x * 30, y * 30), Vector2.Zero, colorGrid[x, y]);
@@ -202,7 +203,6 @@ namespace Practicum2.gameobjects
                 if(obj!= null)
                     objCounter++;
             }
-            //Debug.Print("Objects in grid: " + objCounter);
             base.Update(gameTime);
         }
     }

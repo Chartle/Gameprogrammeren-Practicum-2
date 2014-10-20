@@ -35,11 +35,6 @@ public class GameObjectGrid : GameObject
         }
     }
 
-    public void Remove(int x, int y)
-    {
-        grid[x, y] = null;    
-    }
-
     public GameObject Get(int x, int y)
     {
         if (x >= 0 && x < grid.GetLength(0) && y >= 0 && y < grid.GetLength(1))

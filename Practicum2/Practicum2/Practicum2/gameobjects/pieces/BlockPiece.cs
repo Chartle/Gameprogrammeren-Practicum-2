@@ -12,13 +12,14 @@ namespace Practicum2.gameobjects.pieces
 {
     class BlockPiece : Piece
     {
-        public BlockPiece(bool isNextPiece, string id = "", int size = 4, string assetname = "sprites/block") : base(isNextPiece, size, id)
+        public BlockPiece(bool isNextPiece, string id = "", int size = 4, string assetname = "sprites/block")
+            : base(isNextPiece, id, size)
         {
             for (int x = 0; x < 2; x++)
             {
                 for (int y = 0; y < 2; y++)
                 {
-                    pieceGrid[x, y] = true;
+                    pieceArray[x, y] = true;
                 }
             }
             color = Color.Yellow;

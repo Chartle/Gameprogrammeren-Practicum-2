@@ -12,13 +12,14 @@ namespace Practicum2.gameobjects.pieces
 {
     class LMirrorPiece : Piece
     {
-        public LMirrorPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block") : base(isNextPiece, size, id)
+        public LMirrorPiece(bool isNextPiece, string id = "", int size = 3, string assetname = "sprites/block")
+            : base(isNextPiece, id, size)
         {
             for (int y = 0; y < 3; y++)
             {
-                pieceGrid[1, y] = true;
+                pieceArray[1, y] = true;
             }
-            pieceGrid[0, 2] = true;
+            pieceArray[0, 2] = true;
 
             color = Color.Blue;
             pieceType = PieceType.LMirror;
