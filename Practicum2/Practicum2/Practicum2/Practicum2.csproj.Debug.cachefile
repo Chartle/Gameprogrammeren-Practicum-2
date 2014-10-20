@@ -1,0 +1,15 @@
+Content\fonts\MainMenuFont.xnb
+Content\fonts\SpelFont.xnb
+Content\sprites\block.xnb
+Content\sprites\topOverlay.xnb
+Content\audio\levelUp.xnb
+Content\audio\tetrisSong.xnb
+Content\audio\piecePlaced.xnb
+Content\audio\menuSong.xnb
+Content\audio\clearLine.xnb
+Content\audio\rotate.xnb
+Content\audio\fail.xnb
+Content\audio\gameOverSong.xnb
+Content\audio\tetrisSong.wma
+Content\audio\menuSong.wma
+Content\audio\gameOverSong.wma
